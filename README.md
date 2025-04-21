@@ -1,2 +1,2 @@
 # XFM
-An Expandable Functional Markup Language. XFM
+An E***x***pandable ***F***unctional ***M***arkup Language.
