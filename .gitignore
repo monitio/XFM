@@ -1,0 +1,9 @@
+# nodejs/npm stuff
+node_modules
+package-lock.json
+
+# deno stuff
+deno.lock
+
+dist/
+.env

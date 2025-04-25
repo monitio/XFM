@@ -1,0 +1,78 @@
+# XFM - Logic file
+
+# comments are the same as Python but support
+# JavaScript and C comment styles so `//`
+# comments are allowed but not used as much
+
+# comments that have the `>` character straight
+# after the hashtag are still syntax highlighted
+# like actual code in text editors when they are
+# actually just comments still and are ignored
+# when compiling like normal comments are
+
+# importing is the same as TypeScript or
+# ESModules in JavaScript but without the
+# semicolons as said later:
+
+#> import { main } from "@std"
+
+# you would not normally need to import the
+# standard library (@std) as it is built in
+
+# variables are the same as Python
+#> variablename = "string"
+
+# `f` == defining a function but you can also use
+# the word `function` to define a function
+#> function printname(name: str) { return print(name) }
+#> f printname(name: str) { return print(name) }
+
+# single line functions are allowed but can only
+# return things not process them
+
+# params on functions are like Rust a little bit,
+# but not fully Rust. you have to say what type
+# a param is if the param doesn't exist already
+
+# a multiple line (multi-line) function:
+f hw() {
+
+  # all callable things do not need semi-colons
+  # to end the line like C and Javascript do:
+
+  print("hello world")
+
+  # you can still use semi-colons for compatibility
+  # but it isn't recommended
+}
+
+# all programs will need the Main function for actual
+# use anywhere. the main function must be exactly
+# called `Main`. no missspells allowed so if you
+# accidentally call it `main` it won't work
+
+# calling any function `main` will give an error
+# saying that this function name is reserved for
+# another function
+
+# making a function with the same name twice
+# will give an error saying that you have
+# 2 functions with the same name
+
+# here I am importing the `hw()` function we
+# made earlier for use even though in JavaScript
+# we do not need to do that because all functions
+# are global by default
+
+f Main(hw) {
+
+  # I can then call this hw function from inside
+  # the main function to print `hello world`
+
+  hw()
+}
+
+# the actual code of this file without the comments
+# is in the seperate file called nocomments.xfml
+
+# the output of this file is called output.js

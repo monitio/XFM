@@ -1,0 +1,12 @@
+# no-comments version of logic.xfml
+
+# output of this file after compilation
+# is in the file called: output.js
+
+f hw() {
+  print("hello world")
+}
+
+f Main(hw) {
+  hw()
+}

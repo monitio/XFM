@@ -1,0 +1,33 @@
+{
+  "name": "@monitio/xfm",
+  "version": "0.0.1",
+  "description": "E**x**pandable **F**unctional **M**arkup",
+  "private": false,
+  "scripts": {
+    "test": "deno task test",
+    "dev": "deno task dev"
+  },
+  "os": [
+    "win32",
+    "linux",
+    "!darwin"
+  ],
+  "keywords": [
+    "TS",
+    "CLI",
+    "XFM",
+    "Deno",
+    "Compiler",
+    "Typescript"
+  ],
+  "author": "James-Beans",
+  "license": "GPL-3.0-only",
+  "homepage": "https://github.com/monitio/XFM",
+  "bugs": {
+    "url": "https://github.com/monitio/XFM/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monitio/XFM.git"
+  }
+}
