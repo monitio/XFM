@@ -1,11 +1,11 @@
 {
   "name": "@monitio/xfm",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "E**x**pandable **F**unctional **M**arkup",
   "private": false,
   "scripts": {
     "test": "deno task test",
-    "dev": "deno task dev"
+    "dev": "deno task cli"
   },
   "os": [
     "win32",
@@ -29,5 +29,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/monitio/XFM.git"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.1",
+    "commander": "^13.1.0",
+    "picocolors": "^1.1.1"
   }
 }

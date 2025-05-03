@@ -10,6 +10,15 @@
 # actually just comments still and are ignored
 # when compiling like normal comments are
 
+# naming conventions:
+# XFM does not care about what case the programmer
+# has put in the program at all. it only cares if it is
+# being used already or is reserved for a sepecific function
+# (like the main or Main function)
+#
+# and yes it cares if you name a function the same as a variable
+# since you can't have the same name twice
+
 # importing is the same as TypeScript or
 # ESModules in JavaScript but without the
 # semicolons as said later:
@@ -20,7 +29,10 @@
 # standard library (@std) as it is built in
 
 # variables are the same as Python
+# but will not work if the spaces are wrong
 #> variablename = "string"
+#> name = input("Hello, what is your name?")
+#> x = 45
 
 # `f` == defining a function but you can also use
 # the word `function` to define a function
