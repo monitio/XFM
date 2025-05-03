@@ -1,5 +1,6 @@
 # XFM
 E***x***pandable ***F***unctional ***M***arkup
+- *Both expandable and already expanded.*
 
 ---
 
