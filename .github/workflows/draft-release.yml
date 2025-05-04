@@ -47,8 +47,10 @@ jobs:
         id: extract_desc
         shell: bash
         run: |
-          full="${{ github.event.head_commit.message }}"
-          full="${full//\`/\\\`}"
+          commit_message="${{ github.event.head_commit.message }}"
+          read -r -d '' full <<'EOF'
+          ${{ github.event.head_commit.message }}
+          EOF
           desc="$(printf '%s\n' "$full" | sed -n '2,$p')"
           echo "commit_description<<EOF" >> $GITHUB_OUTPUT
           echo "$desc" >> $GITHUB_OUTPUT
