@@ -6,9 +6,9 @@ on:
       - main
 
 permissions:
-  contents: write     # needed to create releases
+  contents: write     # needed to create/update releases
   id-token: write     # for semantic-release auth if required
-  packages: write     # might be needed by semantic-release plugins
+  packages: write     # for any semantic-release plugins that touch packages
 
 jobs:
   prepare-and-draft:
@@ -21,30 +21,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # 2. Set up Node 23.x
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '23.7.0'
-          cache: 'npm'
-
-      # 3. Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # 4. Figure out the next version with semantic-release (no publish)
+      # 2. Determine next version (dry-run)
       - name: Determine next version
         id: bump
         uses: cycjimmy/semantic-release-action@v4
         with:
-          dryRun: true                      # don’t actually publish
+          dryRun: true
           extra_plugins: |
             @semantic-release/changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN:    ${{ secrets.NPM_TOKEN }}
 
-      # 5. Create a draft pre-release with our template
+      # 3. Create the draft pre-release with your exact template
       - name: Draft GitHub Release
         uses: actions/create-release@v1
         with:
