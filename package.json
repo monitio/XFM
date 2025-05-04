@@ -39,9 +39,6 @@
     "type": "git",
     "url": "git+https://github.com/monitio/XFM.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "dependencies": {
     "@clack/prompts": "^0.10.1",
     "commander": "^13.1.0",
