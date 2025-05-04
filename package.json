@@ -1,6 +1,6 @@
 {
   "name": "@monitio/xfm",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "E**x**pandable **F**unctional **M**arkup",
   "private": false,
   "main": "./src/launcher.js",
