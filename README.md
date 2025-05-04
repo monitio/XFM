@@ -10,7 +10,7 @@ See the [Todo list](./TODO.md) for a list of things that have been implemented f
 
 ---
 
-A lot of the logic bit of the compiler logic is taken from [Build a programming language from scratch by Tylerlaceby](https://www.youtube.com/watch?v=8VB5TY1sIRo&list=PL_2VhOvlMk4UHGqYCLWc6GO8FaPl8fQTh) and modified. This is because I have never programmed a compiler or anything like this before and thought it would be an interesting concept to learn more.
+A lot of the logic bit of the compiler logic is taken from [Build a programming language from scratch](https://www.youtube.com/watch?v=8VB5TY1sIRo&list=PL_2VhOvlMk4UHGqYCLWc6GO8FaPl8fQTh) by [Tylerlaceby](https://github.com/tlaceby) and modified. This is because I have never programmed a compiler or anything like this before and thought it would be an interesting concept to learn more.
 
 I do not claim to have written all of the code. Some bits may be the exact same as his.
 He is also listed in the [Credits](./CREDITS.md).

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { parseArgs } from "@std/cli/parse-args";
 import color from "picocolors";
 

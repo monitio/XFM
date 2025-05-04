@@ -1,9 +1,17 @@
 {
   "tasks": {
     "cli": "deno run -A src/main.ts",
-    "test": "deno test"
+    "copy": "deno run -A scripts/copy.ts",
+
+    "build:all": "deno task build:launcher && deno task build:win && deno task build:linux_86 && deno task build:linux_arm && deno task copy",
+    "build:launcher": "npx tsc --project ./launcher/tsconfig.launcher.json",
+
+    "build:win": "deno compile --output package/exec/xfmc-windows-x86_64.exe --target x86_64-pc-windows-msvc -A src/main.ts",
+    "build:linux_86": "deno compile --output package/exec/xfmc-linux-x86_64 --target x86_64-unknown-linux-gnu -A src/main.ts",
+    "build:linux_arm": "deno compile --output package/exec/xfmc-linux-aarch64 --target aarch64-unknown-linux-gnu -A src/main.ts"
   },
   "imports": {
-    "@std/cli": "jsr:@std/cli@^1.0.17"
+    "@std/cli": "jsr:@std/cli@^1.0.17",
+    "@std/path": "jsr:@std/path@^1.0.9"
   }
 }

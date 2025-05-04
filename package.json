@@ -1,12 +1,21 @@
 {
   "name": "@monitio/xfm",
-  "version": "0.0.5",
+  "version": "0.0.1",
   "description": "E**x**pandable **F**unctional **M**arkup",
   "private": false,
-  "scripts": {
-    "test": "deno task test",
-    "dev": "deno task cli"
+  "main": "./src/launcher.js",
+  "types": "./src/launcher.d.ts",
+  "bin": {
+    "xfmc": "./src/launcher.js",
+    "xfm": "./src/launcher.js"
   },
+  "scripts": {
+    "test:dev": "deno task cli",
+    "test:bin": "deno task build:all && node package/src/launcher.js",
+
+    "build": "deno task build:all"
+  },
+  "files": ["*"],
   "os": [
     "win32",
     "linux",
@@ -30,9 +39,16 @@
     "type": "git",
     "url": "git+https://github.com/monitio/XFM.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "dependencies": {
     "@clack/prompts": "^0.10.1",
     "commander": "^13.1.0",
-    "picocolors": "^1.1.1"
+    "picocolors": "^1.1.1",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3"
   }
 }

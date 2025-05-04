@@ -5,7 +5,10 @@ This file is for file comments that are giving errors but still need to be there
 
 `package.json`:
 ```json
-"main": "index.js",
+"main": "packages/npm/mod.js",
+"types": "packages/npm/mod.d.ts",
+
+
 ```
 
 `deno.json`:
@@ -15,6 +18,6 @@ This file is for file comments that are giving errors but still need to be there
 
 `README.md`:
 ```md
-Install globablly: `npm install -g @monitio/xfmc`
-Run: `xfmc`
+Install globablly: `npm install -g @monitio/xfm`
+Run `xfmc` or `xfm` for short.
 ``

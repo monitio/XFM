@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "declaration": true,             // generate .d.ts files
+    "types": ["node"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+  },
+  "include": ["*"]    // only compile your launcher files
+}

@@ -5,5 +5,11 @@ package-lock.json
 # deno stuff
 deno.lock
 
-dist/
-.env
+# auth stuff
+.env/
+.npmrc
+
+# built files/folders:
+package
+launcher/launcher.js
+launcher/launcher.d.ts
