@@ -26,7 +26,7 @@ jobs:
         id: bump
         uses: cycjimmy/semantic-release-action@v4
         with:
-          dryRun: true
+          dry_run: true
           extra_plugins: |
             @semantic-release/changelog
         env:
@@ -47,11 +47,9 @@ jobs:
         id: extract_desc
         shell: bash
         run: |
-          # full message includes title and body
           full="${{ github.event.head_commit.message }}"
-          # remove the first line (title) and keep lines 2+
-          desc="$(printf "%s\n" "$full" | sed -n '2,$p')"
-          # write to the new GITHUB_OUTPUT file for Actions outputs
+          full="${full//\`/\\\`}"
+          desc="$(printf '%s\n' "$full" | sed -n '2,$p')"
           echo "commit_description<<EOF" >> $GITHUB_OUTPUT
           echo "$desc" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
