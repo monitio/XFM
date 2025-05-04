@@ -11,9 +11,6 @@ permissions:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./package
 
     steps:
       - name: Checkout repository
@@ -31,18 +28,28 @@ jobs:
 
       - name: Install npm dependencies
         run: npm install
-        working-directory: ./
 
       - name: Build all platforms
         run: npm run build
-        working-directory: ./
+
+      - name: Create .npmrc in /package for npmjs.org
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+        working-directory: ./package
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to npmjs.org
         run: npm publish --access public
+        working-directory: ./package
+
+      - name: Create .npmrc in /package for GitHub Packages
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
+        working-directory: ./package
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to GitHub Packages
         run: npm publish --registry https://npm.pkg.github.com
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ./package
