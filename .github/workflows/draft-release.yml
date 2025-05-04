@@ -33,7 +33,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN:    ${{ secrets.NPM_TOKEN }}
 
-      # 3. Create the draft pre-release with your exact template
+      # 3. Extract only the commit description (body)
+      - name: Extract commit description
+        id: extract_desc
+        shell: bash
+        run: |
+          # full message includes title and body
+          full="${{ github.event.head_commit.message }}"
+          # remove the first line (title) and keep lines 2+
+          desc="$(printf "%s\n" "$full" | sed -n '2,$p')"
+          # write to the new GITHUB_OUTPUT file for Actions outputs
+          echo "commit_description<<EOF" >> $GITHUB_OUTPUT
+          echo "$desc" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # 4. Create the draft pre-release with template
       - name: Draft GitHub Release
         uses: actions/create-release@v1
         with:
@@ -46,6 +60,7 @@ jobs:
             **Triggered by committer:** @${{ github.actor }}
             ---
             # What's changed?
-            ${{ github.event.head_commit.message }}
+            ${{ steps.extract_desc.outputs.commit_description }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
