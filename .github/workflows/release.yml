@@ -1,8 +1,10 @@
-name: Release Package
+name: Publish Package
 
 on:
   release:
-    types: [published, prereleased]
+    types:
+      - released       # fires when a draft (pre-)release is published
+      - prereleased    # covers pre-releases flipped to “published”
 
 permissions:
   contents: read
@@ -11,6 +13,11 @@ permissions:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+
+    # All run steps now default into the /package folder
+    defaults:
+      run:
+        working-directory: ./package
 
     steps:
       - name: Checkout repository
@@ -32,24 +39,18 @@ jobs:
       - name: Build all platforms
         run: npm run build
 
-      - name: Create .npmrc in /package for npmjs.org
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-        working-directory: ./package
+      - name: Create .npmrc for npmjs.org
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to npmjs.org
         run: npm publish --access public
-        working-directory: ./package
 
-      - name: Create .npmrc in /package for GitHub Packages
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
-        working-directory: ./package
+      - name: Create .npmrc for GitHub Packages
+        run: echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to GitHub Packages
         run: npm publish --registry https://npm.pkg.github.com
-        working-directory: ./package

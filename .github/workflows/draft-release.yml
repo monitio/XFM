@@ -1,0 +1,62 @@
+name: Draft New Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write     # needed to create releases
+  id-token: write     # for semantic-release auth if required
+  packages: write     # might be needed by semantic-release plugins
+
+jobs:
+  prepare-and-draft:
+    runs-on: ubuntu-latest
+    outputs:
+      next_version: ${{ steps.bump.outputs.next_release_version }}
+
+    steps:
+      # 1. Check out your code
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # 2. Set up Node 23.x
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '23.7.0'
+          cache: 'npm'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Figure out the next version with semantic-release (no publish)
+      - name: Determine next version
+        id: bump
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          dryRun: true                      # don’t actually publish
+          extra_plugins: |
+            @semantic-release/changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN:    ${{ secrets.NPM_TOKEN }}
+
+      # 5. Create a draft pre-release with our template
+      - name: Draft GitHub Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: v${{ needs.prepare-and-draft.outputs.next_version }}
+          release_name: v${{ needs.prepare-and-draft.outputs.next_version }}
+          draft: true
+          prerelease: true
+          body: |
+            v${{ needs.prepare-and-draft.outputs.next_version }}
+            **Triggered by committer:** @${{ github.actor }}
+            ---
+            # What's changed?
+            ${{ github.event.head_commit.message }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
