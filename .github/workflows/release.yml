@@ -34,7 +34,7 @@ jobs:
         working-directory: ./
 
       - name: Build all platforms
-        run: npm run build:all
+        run: npm run build
         working-directory: ./
 
       - name: Publish to npmjs.org
