@@ -6,8 +6,7 @@
   "main": "./src/launcher.js",
   "types": "./src/launcher.d.ts",
   "bin": {
-    "xfmc": "./src/launcher.js",
-    "xfm": "./src/launcher.js"
+    "xfmc": "./src/launcher.js"
   },
   "scripts": {
     "test:dev": "deno task cli",

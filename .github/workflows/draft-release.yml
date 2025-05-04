@@ -33,7 +33,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN:    ${{ secrets.NPM_TOKEN }}
 
-      # 3. Extract only the commit description (body)
+      # 3. Get short (7 characters long) commit SHA code
+      - name: Extract short SHA
+        id: extract_sha
+        shell: bash
+        run: |
+          full_sha="${{ github.sha }}"
+          short_sha="${full_sha:0:7}"
+          echo "short_sha=$short_sha" >> $GITHUB_OUTPUT
+
+      # 4. Extract only the commit description (body)
       - name: Extract commit description
         id: extract_desc
         shell: bash
@@ -47,7 +56,7 @@ jobs:
           echo "$desc" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      # 4. Create the draft pre-release with template
+      # 5. Create the draft pre-release with template
       - name: Draft GitHub Release
         uses: actions/create-release@v1
         with:
@@ -56,11 +65,12 @@ jobs:
           draft: true
           prerelease: true
           body: |
-            v${{ needs.prepare-and-draft.outputs.next_version }}
+            v${{ needs.prepare-and-draft.outputs.next_version }} | ${{ steps.extract_sha.outputs.short_sha }}
             **Triggered by committer:** @${{ github.actor }}
+
             ---
+
             # What's changed?
             ${{ steps.extract_desc.outputs.commit_description }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
