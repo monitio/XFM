@@ -6,3 +6,6 @@ These are the credits for XFM.
 
 ## Contributers:
 [See the updated Github contributers list for more information about the contributers.](https://github.com/monitio/XFM/graphs/contributors)
+
+## Made by [Monitio](https://github.com/monitio) and used here:
+- [SemVer-Typing](https://github.com/monitio/SemVer-Typing) - The [versioning](./VERSIONING.md) specification used.
