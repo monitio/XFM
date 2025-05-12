@@ -16,6 +16,7 @@ const rootFiles = [
   "../CREDITS.md",
   "../COMMENTS.md",
   "../package.json",
+  "../VERSIONING.md",
 ];
 const launcherFiles = [
   "../launcher/launcher.js",
