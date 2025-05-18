@@ -1,3 +1,6 @@
+> [!WARNING]
+> I no longer feel motivated to continue this. It was an absolute failure. There will be no alternative made by me to fix this any more. This is going to be archived and therefore, you shouldn't use as its more of a failed concept.
+
 # XFM
 E***x***pandable ***F***unctional ***M***arkup
 - *Both expandable and already expanded.*
